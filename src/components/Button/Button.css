@@ -1,0 +1,21 @@
+.btn {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+    background: #0dd728;
+    outline: none;
+    border: 1px solid #0dd728;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #ffffff;
+    padding: 10px 15px;
+    text-transform: uppercase;
+}
+
+.danger {
+    background: red;
+}
+
+.primary {
+    background: blue;
+}
