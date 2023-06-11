@@ -1,0 +1,16 @@
+.input__group {
+display: flex;
+flex-direction: column;
+}
+
+.input__label {
+    font-size: 500;
+    line-height: 18px;
+}
+
+.input {
+    outline: none;
+    border: 1px solid #04d008;
+    border-radius: 8px;
+    padding: 5px 10px;
+}
