@@ -1,10 +1,10 @@
-import Form from "./pages/Form/Form";
+import State from "./pages/State/State";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Form />
+      <State />
     </div>
   );
 }
