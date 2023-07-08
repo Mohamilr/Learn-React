@@ -34,7 +34,6 @@ const State = () => {
   }, [count]);
 
   const call = useCallback(() => {
-    console.log("inside", condition);
     setCondition("hi");
   }, [condition]);
 
@@ -43,8 +42,6 @@ const State = () => {
   const filteredBook = useMemo(() => {
     return bookTitles.filter((bookTitle) => bookTitle?.length > 20);
   }, [bookTitles]);
-
-  console.log(filteredBook);
 
   const handleBooksUpdate = () => {
     setBookTitles((prev) => [...prev, "purification of the soul"]);
