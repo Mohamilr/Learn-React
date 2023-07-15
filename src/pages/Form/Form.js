@@ -3,6 +3,7 @@ import Input from "../../components/Input/Input";
 import { formSchema } from "../../validations/form.validation";
 import { useFormik } from "formik";
 import Button from "../../components/Button/Button";
+import AxiosInstance from "../../api";
 import "./Form.css";
 
 const Form = () => {
@@ -25,19 +26,21 @@ const Form = () => {
 
   const formik = useFormik({
     initialValues: {
-      fullName: blogs[0].fullName || "",
+      full_name: blogs[0].fullName || "",
       email: blogs[0].email || "",
       password: blogs[0].password || "",
       url: blogs[0].url || "",
     },
     validationSchema: formSchema,
-    onSubmit: (values) => {
-      console.log(values);
-      if (isEdit) {
-        blogs[0] = values;
-      } else {
-        blogs.push(values);
-      }
+    onSubmit: async (values) => {
+      const res = await AxiosInstance.post("/signin", values);
+
+      // console.log(values);
+      // if (isEdit) {
+      //   blogs[0] = values;
+      // } else {
+      //   blogs.push(values);
+      // }
     },
   });
 

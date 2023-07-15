@@ -35,6 +35,7 @@ const State = () => {
 
   const call = useCallback(() => {
     setCondition("hi");
+    // eslint-disable-next-line
   }, [condition]);
 
   //   console.log("outside", condition);
