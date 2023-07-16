@@ -1,0 +1,3 @@
+export const SAVE_TODO = "SAVE_TODO";
+export const SAVE_USER_PROFILE = "SAVE_USER_PROFILE";
+export const SAVE_COMMENTS = "SAVE_COMMENTS";

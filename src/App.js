@@ -1,3 +1,4 @@
+import React from "react";
 import ApiCalls from "./pages/ApiCalls/ApiCalls";
 import "./App.css";
 
