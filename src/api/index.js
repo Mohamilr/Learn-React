@@ -10,7 +10,6 @@ const token = localStorage.getItem("token");
 AxiosInstance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    console.log("hola");
     // token && (config.headers["Authorization"] = `Bearer ${token}`)
 
     return config;
@@ -25,8 +24,6 @@ AxiosInstance.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
-    console.log("e dey here");
-    console.log(response);
     return { ...response, data: { ...response.data, userId: 10 } };
   },
   function (error) {

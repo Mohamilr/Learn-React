@@ -4,6 +4,8 @@ import AxiosInstance from "../../api";
 import { AppContext } from "../../context";
 import { SAVE_TODO, SAVE_COMMENTS } from "../../context/types";
 // import State from "../State/State";
+import { useDispatch, useSelector } from "react-redux";
+import store from "../../redux/store";
 
 const ApiCalls = () => {
   //   const [todo, setTodo] = useState({});
@@ -11,17 +13,18 @@ const ApiCalls = () => {
   const [loading, setLoading] = useState(false);
   const [commentLoading, setCommentLoading] = useState(false);
 
-  const [{ todo, todoId, comments, userProfile }, dispatchData] =
-    useContext(AppContext);
+  //   const { todos } = useSelector((state) => state.todos);
+  //   const dispatch = useDispatch();
 
-  console.log({ todo, todoId, comments, userProfile });
+  const { todosReducer } = store.getState();
+  console.log(todosReducer);
   const getTodo = async () => {
     try {
       setLoading(true);
-      const res = await AxiosInstance.get(`/todos/${todoId}`);
+      const res = await AxiosInstance.get(`/todos/2`);
 
       setLoading(false);
-      dispatchData({ type: SAVE_TODO, data: res.data });
+      store.dispatch({ type: SAVE_TODO, data: res.data });
     } catch (err) {
       setLoading(false);
 
@@ -36,7 +39,7 @@ const ApiCalls = () => {
 
       setCommentLoading(false);
 
-      dispatchData({ type: SAVE_COMMENTS, data: res.data });
+      //   dispatchData({ type: SAVE_COMMENTS, data: res.data });
     } catch (err) {
       setCommentLoading(false);
 
@@ -44,7 +47,7 @@ const ApiCalls = () => {
     }
   };
 
-  console.log(comments.length);
+  //   console.log(comments.length);
 
   return (
     <div>
@@ -52,7 +55,7 @@ const ApiCalls = () => {
         text={`${loading ? "Loading..." : "Get todo"}`}
         onClick={getTodo}
       />
-      <p>{todo?.title}</p>
+      {/* <p>{todo?.title}</p> */}
       {error && <p>{error}</p>}
 
       <Button
@@ -60,8 +63,8 @@ const ApiCalls = () => {
         onClick={getComments}
       />
 
-      {comments?.length > 0 &&
-        comments?.map((comment, index) => <p key={index}>{comment}</p>)}
+      {/* {comments?.length > 0 &&
+        comments?.map((comment, index) => <p key={index}>{comment}</p>)} */}
     </div>
   );
 };
