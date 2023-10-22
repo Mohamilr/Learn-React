@@ -1,7 +1,12 @@
-import { legacy_createStore as createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import allReducer from "./rootReducer";
+import countersLICE from "./modules/analytics/analyticsSlice";
 
-const store = createStore(allReducer, composeWithDevTools());
+const store = configureStore({
+  reducer: {
+    counter: countersLICE,
+  },
+});
 
 export default store;

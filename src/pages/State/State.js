@@ -7,6 +7,11 @@ import React, {
 } from "react";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  increment,
+  decrement,
+} from "../../redux/modules/analytics/analyticsSlice";
 
 const State = () => {
   const [count, updateCount] = useState(0);
@@ -19,9 +24,12 @@ const State = () => {
     "the power of habit",
   ]);
 
+  const counter = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
+
   //   const input = document.querySelector(".input");
 
-  //   console.log(input);
+  console.log(counter);
 
   const inputRef = useRef(null);
 
@@ -50,11 +58,18 @@ const State = () => {
 
   return (
     <div>
-      <Button text="Decrease" onClick={() => updateCount(count - 1)} />
-      <Button text="Increase" onClick={() => updateCount((prev) => prev + 1)} />
+      <Button text="Decrease" onClick={() => dispatch(decrement())} />
+      <Button text="Increase" onClick={() => dispatch(increment())} />
 
-      {showCount && <p>{count}</p>}
-
+      {/* {showCount &&}/ */}
+      <p
+        style={{
+          color: "red",
+          fontSize: "50px",
+        }}
+      >
+        {count}
+      </p>
       <Button
         text="Toggle Count Display"
         onClick={() => toggleShowCount((prev) => !prev)}

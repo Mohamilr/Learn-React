@@ -6,6 +6,11 @@ import { SAVE_TODO, SAVE_COMMENTS } from "../../context/types";
 // import State from "../State/State";
 import { useDispatch, useSelector } from "react-redux";
 import store from "../../redux/store";
+// import {creteApi, fetch} from "@reduxjs/toolkit/query/react"
+
+// const apiSlice = creteApi({
+//   reducerPath
+// })
 
 const ApiCalls = () => {
   //   const [todo, setTodo] = useState({});
