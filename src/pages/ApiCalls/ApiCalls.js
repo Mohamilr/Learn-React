@@ -13,7 +13,7 @@ const ApiCalls = () => {
   const [loading, setLoading] = useState(false);
   const [commentLoading, setCommentLoading] = useState(false);
 
-  //   const { todos } = useSelector((state) => state.todos);
+  const { todos } = useSelector((state) => state.todos);
   //   const dispatch = useDispatch();
 
   const { todosReducer } = store.getState();

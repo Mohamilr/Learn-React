@@ -5,13 +5,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import AppContextProvider from "./context";
 import { Provider } from "react-redux";
-import store from "./redux/store";
+// import store from "./redux/store";
+import reduxToolkitStore from "./redux-toolkit/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     {/* <AppContextProvider> */}
-    <Provider store={store}>
+    <Provider store={reduxToolkitStore}>
       <App />
     </Provider>
     {/* </AppContextProvider> */}

@@ -1,78 +1,38 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-  useMemo,
-} from "react";
+import React from "react";
 import Button from "../../components/Button/Button";
-import Input from "../../components/Input/Input";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  increment,
+  decrement,
+  incrementByAmount,
+} from "../../redux-toolkit/counterSlice/counterSlice";
+import { useGetCommentsQuery } from "../../api/redux-toolkit-api";
 
 const State = () => {
-  const [count, updateCount] = useState(0);
-  const [showCount, toggleShowCount] = useState(true);
-  const [condition, setCondition] = useState("okay");
-  const [bookTitles, setBookTitles] = useState([
-    "richest man in babylon",
-    "think and grow rich",
-    "the subtle art of not giving a fuck",
-    "the power of habit",
-  ]);
+  const { count } = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
 
-  //   const input = document.querySelector(".input");
+  console.log(count);
 
-  //   console.log(input);
+  const { data, error, isLoading } = useGetCommentsQuery();
 
-  const inputRef = useRef(null);
+  console.log("comments ", data);
 
-  //   console.log(inputRef);
+  const comments = useSelector((state) => state.typicode);
 
-  useEffect(() => {
-    updateCount(10);
-
-    return () => {};
-  }, [count]);
-
-  const call = useCallback(() => {
-    setCondition("hi");
-    // eslint-disable-next-line
-  }, [condition]);
-
-  //   console.log("outside", condition);
-
-  const filteredBook = useMemo(() => {
-    return bookTitles.filter((bookTitle) => bookTitle?.length > 20);
-  }, [bookTitles]);
-
-  const handleBooksUpdate = () => {
-    setBookTitles((prev) => [...prev, "purification of the soul"]);
-  };
-
+  console.log("redux comments data", comments);
   return (
     <div>
-      <Button text="Decrease" onClick={() => updateCount(count - 1)} />
-      <Button text="Increase" onClick={() => updateCount((prev) => prev + 1)} />
-
-      {showCount && <p>{count}</p>}
+      <Button text="Decrease" onClick={() => dispatch(decrement())} />
+      <div></div>
+      <Button text="Increase" onClick={() => dispatch(increment())} />
 
       <Button
-        text="Toggle Count Display"
-        onClick={() => toggleShowCount((prev) => !prev)}
+        text="Increase By a number"
+        onClick={() => dispatch(incrementByAmount(5))}
       />
 
-      {/* <input type="text" ref={inputRef} defaultValue="this is good" /> */}
-
-      <Input
-        type="text"
-        placeholder="type in here"
-        name="Text"
-        defaultValue="hello"
-        ref={inputRef}
-      />
-
-      <Button text="CALL" onClick={call} />
-
-      <Button text="add book" onClick={handleBooksUpdate} />
+      <p>{count}</p>
     </div>
   );
 };
